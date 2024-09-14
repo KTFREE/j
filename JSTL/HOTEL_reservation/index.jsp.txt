@@ -1,0 +1,23 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+    <title>Hotel Room Reservation</title>
+</head>
+<body>
+    <h2>Hotel Room Reservation</h2>
+    <form action="reservation.jsp" method="post">
+        Name: <input type="text" name="guest_name" required/><br/>
+        Room Type: 
+        <select name="room_type">
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Suite">Suite</option>
+        </select><br/>
+        Check-in Date: <input type="date" name="check_in_date" required/><br/>
+        Check-out Date: <input type="date" name="check_out_date" required/><br/>
+        Number of Guests: <input type="text" name="num_guests" required/><br/>
+        <input type="submit" value="Reserve"/>
+    </form>
+</body>
+</html>

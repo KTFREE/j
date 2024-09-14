@@ -1,0 +1,6 @@
+DELIMITER //
+create procedure show_details(IN u TEXT)
+begin
+SELECT * from TABLE_NAME where uname = u;
+end //
+DELIMITER;

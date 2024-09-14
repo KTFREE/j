@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <br/>
+        <h:panelGrid>
+            <h:outputLabel for="name" value="Name to be inserted:" />
+            <h:inputText id="name" value="#{iuds.name}" />            
+
+            <h:commandButton value="Insert" action="#{iuds.insert()}" />
+        </h:panelGrid>
+           <br/>
+        <h:panelGrid>
+            <h:outputLabel for="n1" value="Name to be updated from :" />
+            <h:inputText id="n1" value="#{iuds.fname}" />
+            <h:outputLabel for="n2" value="to:" />
+            <h:inputText id="n2" value="#{iuds.tname}" />
+
+            <h:commandButton value="Update" action="#{iuds.update()}" />
+        </h:panelGrid>
+            <br/>
+        <h:panelGrid>
+            <h:outputLabel for="n3" value="Name to be deleted :" />
+            <h:inputText id="n3" value="#{iuds.name}" />
+
+            <h:commandButton value="Delete" action="#{iuds.delete()}" />
+        </h:panelGrid>
+            <br/>
+                
+            <h:commandButton value="Select" action="#{iuds.select}" />
+            <h:dataTable value="#{iuds.list}" var="item">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{item}" />
+                </h:column>
+            </h:dataTable>
+                
+       </h:form>
+    </h:body>
+</html>
+

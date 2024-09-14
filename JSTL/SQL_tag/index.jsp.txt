@@ -1,0 +1,60 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSTL SQL Example</title>
+</head>
+<body>
+
+    <sql:setDataSource 
+        var="dataSource" 
+        driver="com.mysql.cj.jdbc.Driver" 
+        url="jdbc:mysql://localhost:3306/DATABASE_NAME?useSSL=false" 
+        user="root" 
+        password="PASSWORD" />
+
+
+    <sql:update dataSource="${dataSource}">
+        INSERT INTO TABLE_NAME VALUES ('student3', '000111');
+    </sql:update>
+
+    <p>Inserted a new row into the table.</p>
+
+    <sql:update dataSource="${dataSource}">
+        UPDATE TABLE_NAME SET username = 'student100' WHERE username = 'student1';
+    </sql:update>
+
+    <p>Updated rows in the table.</p>
+
+    <sql:update dataSource="${dataSource}">
+        DELETE FROM TABLE_NAME WHERE username = 'Student2';
+    </sql:update>
+
+    <p>Deleted rows from the table.</p>
+    
+    <sql:query var="result" dataSource="${dataSource}">
+        SELECT * FROM TABLE_NAME;
+    </sql:query>
+
+
+    <h2>Query Results:</h2>
+    <table border="1">
+        <tr>
+            
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <c:forEach var="row" items="${result.rows}">
+            <tr>          
+                <td><c:out value="${row.username}" /></td>
+                <td><c:out value="${row.password}" /></td>
+            </tr>
+        </c:forEach>
+    </table>
+</body>
+</html>

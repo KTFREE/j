@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Callable with Servlet</title>
+    </head>
+    <body>
+         <form method="POST" action="insert">
+             ID : <input type="text" name="t1"><br>
+             NAME : <input type ="text" name="t2"><br>
+            <input type="submit" value="Submit">
+         </form> 
+    </body>
+</html>

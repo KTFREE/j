@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+    </head>
+    <body>
+        <form method="POST" action="login">
+            UserName: <input type="text" name="t1"><br>
+            Password: <input type="text" name="t2"><br>
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>

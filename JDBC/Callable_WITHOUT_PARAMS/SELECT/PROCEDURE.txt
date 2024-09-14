@@ -1,0 +1,6 @@
+DELIMITER //
+create procedure selectdata()
+begin
+select * from TABLE_NAME;
+end //
+DELIMITER ;

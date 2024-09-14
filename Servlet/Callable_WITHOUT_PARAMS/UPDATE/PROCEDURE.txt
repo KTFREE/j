@@ -1,0 +1,6 @@
+DELIMITER //
+create procedure updatedata()
+begin
+update TABLE_NAME set name="KC" where id=2;
+end //
+DELIMITER ;

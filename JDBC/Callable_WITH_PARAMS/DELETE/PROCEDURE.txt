@@ -1,0 +1,6 @@
+DELIMITER //
+CREATE PROCEDURE delete_detail(IN number INT)
+BEGIN
+    DELETE FROM TABLE_NAME WHERE number = number;
+END//
+DELIMITER ;

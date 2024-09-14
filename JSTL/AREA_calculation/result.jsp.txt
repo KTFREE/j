@@ -1,0 +1,29 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+    <title>Area Calculation Result</title>
+</head>
+<body>
+    <h2>Area Calculation Results</h2>
+
+    <c:set var="radius" value="${param.radius}" />
+    <c:set var="length" value="${param.length}" />
+    <c:set var="width" value="${param.width}" />
+
+    <c:set var="pi" value="3.14159" />
+    <c:set var="circleArea" value="${pi * radius * radius}" />
+
+    <c:set var="rectangleArea" value="${length * width}" />
+
+    <h3>Circle</h3>
+    <p>Radius: ${radius}</p>
+    <p>Area of Circle: ${circleArea}</p>
+
+    <h3>Rectangle</h3>
+    <p>Length: ${length}</p>
+    <p>Width: ${width}</p>
+    <p>Area of Rectangle: ${rectangleArea}</p>
+
+</body>
+</html>

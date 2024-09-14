@@ -1,0 +1,39 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSTL Functions Example</title>
+</head>
+<body>
+
+    <c:set var="sampleText" value="Hello, JSTL Functions!" />
+
+    <p>Length of the string: ${fn:length(sampleText)}</p>
+
+    <p>Uppercase: ${fn:toUpperCase(sampleText)}</p>
+
+    <p>Lowercase: ${fn:toLowerCase(sampleText)}</p>
+
+    <p>Does the string contain 'JSTL'? ${fn:contains(sampleText, 'JSTL')}</p>
+
+    <c:set var="trimmedText" value="   Some text with spaces   " />
+    <p>Trimmed: '${fn:trim(trimmedText)}'</p>
+
+    <c:set var="csv" value="Apple,Orange,Banana" />
+    <c:set var="fruits" value="${fn:split(csv, ',')}" />
+    <p>Fruits:</p>
+    <ul>
+        <c:forEach var="fruit" items="${fruits}">
+            <li>${fruit}</li>
+        </c:forEach>
+    </ul>
+    
+    <c:set var="replacedText" value="${fn:replace(sampleText, 'JSTL', 'JavaServer Pages')}"/>
+    <p>Original Text: ${sampleText}</p>
+    <p>Replaced Text: ${replacedText}</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<html>
+<head>
+    <title>Reservation Confirmation</title>
+</head>
+<body>
+
+<c:set var="guestName" value="${param.guest_name}" />
+<c:set var="roomType" value="${param.room_type}" />
+<c:set var="checkInDate" value="${param.check_in_date}" />
+<c:set var="checkOutDate" value="${param.check_out_date}" />
+<c:set var="numGuests" value="${param.num_guests}" />
+
+<sql:setDataSource var="myDataSource"
+    driver="com.mysql.cj.jdbc.Driver"
+    url="jdbc:mysql://localhost:3306/DATABASE_NAME?useSSL=false"
+    user="root"
+    password="PASSWORD" />
+
+<sql:update dataSource="${myDataSource}" var="rowsAffected">
+    INSERT INTO TABLE_NAME VALUES (?, ?, ?, ?, ?)
+    <sql:param value="${guestName}" />
+    <sql:param value="${roomType}" />
+    <sql:param value="${checkInDate}" />
+    <sql:param value="${checkOutDate}" />
+    <sql:param value="${numGuests}" />
+</sql:update>
+
+
+<c:choose>
+    <c:when test="${rowsAffected > 0}">
+        <p>Reservation successful! Thank you, <c:out value="${guestName}" />.</p>
+    </c:when>
+    <c:otherwise>
+        <p>Reservation failed. Please try again.</p>
+    </c:otherwise>
+</c:choose>
+
+
+</body>
+</html>

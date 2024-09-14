@@ -1,0 +1,37 @@
+
+import java.sql.*;
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+@WebServlet(name = "update", urlPatterns = {"/update"})
+public class update extends HttpServlet {
+
+   public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        String str1 = request.getParameter("t1");
+        String str2 = request.getParameter("t2");
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DATABASE_NAME?autoReconnect=true&useSSL=false", "root", "PASSWORD");
+      
+        CallableStatement cs = con.prepareCall("call updatedetail(?,?)");
+       
+        cs.setString(1,str1);
+        cs.setString(2, str2);
+       
+        int r = cs.executeUpdate();
+        cs.close();
+        con.close();
+           out.println("No. of row affected : 1 <br>");
+             out.println("Data Updated Successfully");
+        }
+        catch(Exception e ){
+           out.println("Error Message : " + e.getMessage());  
+      }
+    }
+   
+}

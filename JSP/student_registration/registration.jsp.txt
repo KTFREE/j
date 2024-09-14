@@ -1,0 +1,43 @@
+
+<%@page import="java.sql.*" %>
+<%@page import="java.io.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>   
+<%
+response.setContentType("text/html");
+String name = request.getParameter("sname");
+String gender = request.getParameter("gender");
+String city = request.getParameter("city");
+String[] hobbies = request.getParameterValues("hobby");
+String address = request.getParameter("address");
+String hobbyList = String.join(",", hobbies);
+try {
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DATABASE_NAME?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false","root","PASSWORD");
+String sql = "INSERT INTO TABLE_NAME VALUES (?, ?, ?, ?, ?)";
+PreparedStatement ps = conn.prepareStatement(sql);
+ps.setString(1, name);
+ps.setString(2, gender);
+ps.setString(3, city);
+ps.setString(4, hobbyList);
+ps.setString(5, address);
+int i = ps.executeUpdate();
+if (i > 0) {
+out.println("Data inserted successfully");
+} else {
+out.println("Failed to insert data");
+}
+ps.close();
+conn.close();
+} catch (Exception e) {
+out.println("Error: " + e.getMessage());
+}
+%>
+    </body>
+</html>

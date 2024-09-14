@@ -1,0 +1,28 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h2>Student Information</h2>
+<p>Student Name: <%= request.getParameter("sname") %></p>
+<p>Gender: <%= request.getParameter("gender") %></p>
+<p>City: <%= request.getParameter("city") %></p>
+<p>Hobbies:
+<%
+String[] hobbies = request.getParameterValues("hobby");
+if (hobbies != null) {
+for (String hobby : hobbies) {
+out.println(hobby + " ");
+}
+} else {
+out.println("None");
+}
+%>
+</p>
+<p>Address: <%= request.getParameter("address") %></p>
+    </body>
+</html>

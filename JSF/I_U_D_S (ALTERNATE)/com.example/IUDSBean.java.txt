@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.example;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
+
+
+@Named("iuds")
+@RequestScoped
+public class IUDSBean {
+
+    private List<String> list = new ArrayList<String>();
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
+    private String fname;
+    private String tname;
+    private String name;
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void insert() {
+        String sql = "INSERT INTO practice VALUES (?)";
+
+        try {
+            Connection conn = connection.getConnection();        
+            PreparedStatement stmt = conn.prepareStatement(sql); 
+            stmt.setString(1, name);            
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update() {
+        try {
+            Connection conn = connection.getConnection();        
+            PreparedStatement stmt = conn.prepareStatement("update practice set name = '" + tname + "' where name = '" + fname + "'");             
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+
+    public void delete() {
+        try {
+            Connection conn = connection.getConnection();        
+            PreparedStatement stmt = conn.prepareStatement("delete from practice where name = '" + name + "'");             
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void select() {
+        list.clear(); 
+
+        try {
+            Connection conn = connection.getConnection(); 
+            PreparedStatement stmt = conn.prepareStatement("select name from practice"); 
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) { 
+                list.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public IUDSBean() {   
+    }
+}

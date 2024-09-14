@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mini Calculator</title>
+    </head>
+    <body>
+        <form method="POST" action="calculate">
+            
+            1st NUMBER : <input type="text" name="n1"><br>
+            2nd NUMBER : <input type="text" name="n2"><br>
+            
+            <input type="radio" name="operation" value="add">ADD
+            <input type="radio" name="operation" value="sub">SUBTRACT
+            <input type="radio" name="operation" value="mul">MULTIPLY
+            <input type="radio" name="operation" value="div">DIVIDE<br>
+            
+            <input type="submit" value="calculate">
+        </form>
+    </body>
+</html>

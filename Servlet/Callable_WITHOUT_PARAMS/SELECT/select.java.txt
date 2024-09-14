@@ -1,0 +1,36 @@
+
+
+
+import java.sql.*;
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+@WebServlet(name = "select", urlPatterns = {"/select"})
+public class select extends HttpServlet {
+
+   public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DATABASE_NAME?autoReconnect=true&useSSL=false", "root", "PASSWORD");
+            CallableStatement cs = con.prepareCall("call selectdata()");
+     
+            ResultSet rs = cs.executeQuery();
+            
+            while (rs.next()) {
+              out.println(rs.getString("id"));
+               out.println(rs.getString("name"));
+            }
+            con.close();
+            System.out.println("Data Retrieved Successfully");
+        } catch (Exception e){
+            System.out.println("Error Message: " + e.getMessage());
+        }
+    }
+
+}

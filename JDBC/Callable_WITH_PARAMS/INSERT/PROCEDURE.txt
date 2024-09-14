@@ -1,0 +1,6 @@
+DELIMITER //
+CREATE PROCEDURE add_detail(IN number INT, IN name VARCHAR(50))
+BEGIN
+    INSERT INTO TABLE_NAME (number, name) VALUES (number, name);
+END//
+DELIMITER ;

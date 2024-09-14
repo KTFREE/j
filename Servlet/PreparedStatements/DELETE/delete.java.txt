@@ -1,0 +1,34 @@
+
+
+import java.sql.*;
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+public class delete extends HttpServlet {
+
+   public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        String str1 = req.getParameter("t1");
+        //String str2 = req.getParameter("t2");
+        out.print("Received ID: " + str1 + "<br>");
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DATABASE_NAME?autoReconnect=true&useSSL=false", "root", "PASSWORD");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM TABLE_NAME WHERE id = ?");
+            ps.setString(1, str1); 
+            int r = ps.executeUpdate();
+            if (r > 0) {
+                out.println("Student with ID " + str1 + " deleted successfully");
+                
+            } else {
+                out.println("No student found with ID " + str1);
+              }
+        } catch (Exception e) {
+            out.print("Error: " + e.getMessage() + "<br>");
+        }
+    }
+}

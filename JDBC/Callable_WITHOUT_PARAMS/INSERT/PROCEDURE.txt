@@ -1,0 +1,6 @@
+DELIMITER //
+create procedure insertdata()
+begin
+INSERT INTO TABLE_NAME (id, name) VALUES (2, 'ambani');
+end //
+DELIMITER ;

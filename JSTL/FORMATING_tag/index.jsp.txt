@@ -1,0 +1,43 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSTL Formatting Example</title>
+</head>
+<body>
+    
+    <h2>Number Formatting</h2>
+    <p>Original Number: 1234567.89</p>
+    <p>Currency Format: 
+        <fmt:formatNumber value="1234567.89" type="currency" currencySymbol="$" />
+    </p>
+    <p>Percentage Format: 
+        <fmt:formatNumber value="0.875" type="percent" />
+    </p>
+    <p>Custom Number Format (###,###.##): 
+        <fmt:formatNumber value="1234567.89" pattern="###,###.##" />
+    </p>
+    <h2>Date Formatting</h2>
+    <c:set var="now" value="<%= new java.util.Date()%>"></c:set>
+    <p>Current Date and Time: 
+        <fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />
+    </p>
+    <p>Custom Date Format (MMMM dd, yyyy): 
+        <fmt:formatDate value="${now}" pattern="MMMM dd, yyyy" />
+    </p>
+
+    <h2>Parsing Numbers</h2>
+    <fmt:parseNumber var="parsedNumber" value="1,234.56" type="number" />
+    <p>Parsed Number: ${parsedNumber}</p>
+
+    <h2>Parsing Dates</h2>
+    <fmt:parseDate var="parsedDate" value="2024-09-03" pattern="yyyy-MM-dd" />
+    <p>Parsed Date: ${parsedDate}</p>
+
+    
+</body>
+</html>
