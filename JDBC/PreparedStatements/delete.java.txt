@@ -7,10 +7,10 @@ public class delete {
          
           try{
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DATABASE_NAME","root","PASSWORD");
-        CallableStatement cs = con.prepareCall("DELETE FROM TABLE_NAME;");
+        PreparedStatement ps = con.prepareStatement("DELETE FROM TABLENAME");
      
         System.out.println("delected successfully");
-        cs.close();
+        ps.close();
         con.close();
         }
         catch(Exception e ){
