@@ -1,0 +1,17 @@
+package PKG_NAME;
+
+import javax.ejb.Stateless;
+
+@Stateless
+public class BEAN_NAME {
+
+    public Double find_emi(double p, double r, int m) {
+        double mir = (r / 100) / 12;
+       
+        double f_emi = (p * mir * Math.pow(1 + mir, m)) /
+                (Math.pow(1 + mir, m) - 1);
+
+        return f_emi;
+       
+    }
+}

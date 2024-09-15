@@ -1,0 +1,17 @@
+package PKG_NAME;
+
+import javax.ejb.Stateless;
+
+@Stateless
+public class BEAN_NAME {
+
+    public Double convert_inr(double d) {
+        return d * 83.0;
+    }
+    
+    public Double convert_euro(double d) {
+        return d * 0.91;
+    }
+    
+    
+}

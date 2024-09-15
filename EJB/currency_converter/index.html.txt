@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form  action="servletName" method="get">
+            <label for="dollarAmount">$ : </label>
+            <input type="text" id="dollar" name="dollar" required>
+            <input type="submit" value="Convert">
+        </form>
+    </body>
+</html>

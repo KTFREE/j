@@ -1,0 +1,38 @@
+
+import abc.dollar_2_inr;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class SERVLET_NAME extends HttpServlet {
+    
+    @EJB
+    private BEAN_NAME obj_of_bean;
+
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        double d = Double.parseDouble(request.getParameter("dollar"));            
+
+        double INR = BEAN_NAME.convert_inr(d);
+        double Euro = BEAN_NAME.convert_euro(d);
+
+            out.println("<html><body>");
+            out.println("<b>₹ : " + INR + "</b><br>");
+            out.println("<b>€ : " + Euro + "</b>");
+            out.println("</body></html>");
+
+    }
+
+}
